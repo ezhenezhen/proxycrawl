@@ -1,4 +1,6 @@
 class CrawlersController < ApplicationController
+  require 'csv'
+
   def index
     crawler_files = Dir['lib/crawlers/*.rb']
     @crawlers = []
@@ -9,6 +11,6 @@ class CrawlersController < ApplicationController
   end
 
   def crawl
-    @result = params[:id].constantize.new.parse
+    @result = params[:id].constantize.new.parse.to_csv
   end
 end
