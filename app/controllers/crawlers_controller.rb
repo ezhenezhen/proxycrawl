@@ -8,6 +8,7 @@ class CrawlersController < ApplicationController
     end
   end
 
-  def parse
+  def crawl
+    @result = params[:id].constantize.new.parse
   end
 end
