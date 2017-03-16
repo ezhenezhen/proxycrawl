@@ -18,6 +18,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'cocoon'
 gem 'listen'
+gem 'dotenv'
 
 # Frontend
 gem 'coffee-rails', require: false
@@ -56,7 +57,6 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
   gem 'unicorn'
   gem 'airbrake', '<5.0' # some issues in new version. exceptions are not delivered
   gem 'foreman', require: false

@@ -2,7 +2,7 @@ class CrawlersController < ApplicationController
   require 'csv'
 
   def index
-    crawler_files = Dir['lib/crawlers/*.rb']
+    crawler_files = Dir['app/crawlers/*.rb']
     @crawlers = []
 
     crawler_files.each do |c|

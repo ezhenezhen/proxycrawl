@@ -110,6 +110,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    dotenv (2.2.0)
     erubis (2.7.0)
     es5-shim-rails (4.0.1)
       actionpack (>= 3.1)
@@ -319,6 +320,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   devise
+  dotenv
   es5-shim-rails
   font-awesome-rails
   foreman
