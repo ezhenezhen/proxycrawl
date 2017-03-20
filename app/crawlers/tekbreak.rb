@@ -1,6 +1,6 @@
 class Tekbreak
   # http://proxy.tekbreak.com/{n}/{mode}
-  LINK = 'http://proxy.tekbreak.com/500/json'
+  LINK = 'http://proxy.tekbreak.com/200/json'
 
   def parse
     result = []
