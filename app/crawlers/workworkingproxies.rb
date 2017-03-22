@@ -1,7 +1,7 @@
 class Workworkingproxies
   # http://www.workingproxies.org/?page=39
   # http://www.workingproxies.org/?page=0
-  LINK = 'http://workingproxies.org/?page=0'
+  LINK = 'http://workingproxies.org/?page='
 
   def parse
     result = []
