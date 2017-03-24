@@ -1,0 +1,22 @@
+h1
+  ' Listing for
+  = params[:id]
+
+- if @proxies
+
+  table class='table'
+    thead
+      tr
+        th Site
+        th Ip
+        th Port
+        th
+        th
+        th
+
+    tbody
+      - @proxies.each do |proxy|
+        tr
+          td = proxy.site
+          td = proxy.ip
+          td = proxy.port

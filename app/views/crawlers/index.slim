@@ -1,3 +1,27 @@
-- @crawlers.each do |c|
-  p
-    = link_to(c, crawl_crawler_path(c))
+h1
+  'List of proxy sites
+table class='table'
+  thead class='thead-inverse'
+    tr
+      th
+        ' Proxy site
+      th
+        ' Action
+      th 
+        ' Quantity of proxies
+      th 
+        ' File
+      th
+        ' Status
+  tbody
+    - @crawlers.each do |c|
+      tr
+        td
+          = link_to(c, crawler_path(c))
+        td
+          = link_to('Crawl now', crawl_crawler_path(c))
+        td
+          = Proxy.where(site: c).count
+        td
+          = link_to('Download', file_crawler_path(c))
+        td

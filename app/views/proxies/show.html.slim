@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Site:
+  = @proxy.site
+p
+  strong Ip:
+  = @proxy.ip
+p
+  strong Port:
+  = @proxy.port
+
+= link_to 'Edit', edit_proxy_path(@proxy)
+'  |
+= link_to 'Back', proxies_path

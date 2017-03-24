@@ -1,4 +1,4 @@
-class ProxyList
+class Proxylist
   # http://www.proxylist.ro/search-free-proxy.php?country=&port=&anon=&ssl=&start=2
   # http://www.proxylist.ro/search-free-proxy.php?country=&port=&anon=&ssl=&start=0
   LINK = 'http://www.proxylist.ro/search-free-proxy.php?country=&port=&anon=&ssl=&start='
