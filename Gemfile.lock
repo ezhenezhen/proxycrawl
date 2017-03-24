@@ -127,6 +127,7 @@ GEM
       activesupport (>= 4.1.0)
     i18n (0.8.1)
     image_optimizer (1.7.0)
+    ipaddress (0.8.3)
     jquery-minicolors-rails (2.2.3.1)
       jquery-rails
       rails (>= 3.2.8)
@@ -294,6 +295,7 @@ GEM
     websocket-extensions (0.1.2)
     whenever (0.9.7)
       chronic (>= 0.6.3)
+    will_paginate (3.1.5)
 
 PLATFORMS
   ruby
@@ -324,6 +326,7 @@ DEPENDENCIES
   es5-shim-rails
   font-awesome-rails
   foreman
+  ipaddress
   jquery-minicolors-rails
   jquery-rails
   jquery-turbolinks
@@ -350,6 +353,7 @@ DEPENDENCIES
   uglifier
   unicorn
   whenever
+  will_paginate
 
 BUNDLED WITH
-   1.14.3
+   1.14.6

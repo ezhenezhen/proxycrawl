@@ -9,6 +9,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Proxycrawl", root_path %></li>
+            <li><%= link_to "Proxy list", proxies_path %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <%= flash_messages %>
+      
+      <%= yield %>
+    </div>
   </body>
 </html>

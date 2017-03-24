@@ -1,0 +1,22 @@
+h1 Listing proxies
+= will_paginate @proxies
+
+table class='table'
+  thead
+    tr
+      th Site
+      th Ip
+      th Port
+      th
+
+  tbody
+    - @proxies.each do |proxy|
+      tr
+        td = proxy.site
+        td = proxy.ip
+        td = proxy.port
+        td = link_to 'Show', proxy
+
+br
+
+= will_paginate @proxies
