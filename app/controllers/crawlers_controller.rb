@@ -22,8 +22,6 @@ class CrawlersController < ApplicationController
     end
 
     send_data result.to_csv, filename: params[:id].to_s + '.txt'
-
-    redirect_to root_path
   end
 
   def crawl

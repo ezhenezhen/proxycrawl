@@ -19,7 +19,7 @@ gem 'jquery-turbolinks'
 gem 'cocoon'
 gem 'listen'
 gem 'dotenv'
-gem 'whenever', :require => false
+gem 'whenever', require: false
 gem 'ipaddress'
 gem 'will_paginate'
 
