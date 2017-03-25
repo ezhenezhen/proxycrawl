@@ -5,7 +5,7 @@ class Socklist
     result = []
 
     (1..3).each do |n|
-      browser = Watir::Browser.new
+      browser = Watir::Browser.new :phantomjs
       browser.goto LINK + "#{n}"
       html = browser.html
       browser.close
