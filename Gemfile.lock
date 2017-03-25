@@ -127,6 +127,7 @@ GEM
       thor (~> 0.19.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    headless (2.3.1)
     i18n (0.8.1)
     image_optimizer (1.7.0)
     ipaddress (0.8.3)
@@ -336,6 +337,7 @@ DEPENDENCIES
   es5-shim-rails
   font-awesome-rails
   foreman
+  headless
   ipaddress
   jquery-minicolors-rails
   jquery-rails
