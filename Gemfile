@@ -61,6 +61,7 @@ group :development do
 end
 
 group :production do
+  gem 'phantomjs'
   gem 'headless'
   gem 'unicorn'
   gem 'airbrake', '<5.0' # some issues in new version. exceptions are not delivered
