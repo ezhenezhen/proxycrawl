@@ -6,8 +6,8 @@ class Proxylist
   def parse
     result = []
 
-    (0..3).each do |n|
-      doc = Nokogiri::HTML(open("#{LINK}#{n*12}"))
+    (0..2).each do |n|
+      doc = Nokogiri::HTML(open("#{LINK}#{n}"))
       doc.css('tbody tr').each do |node|
         puts node.children.children.first.text + ':' + node.children.children[1].text
       end
