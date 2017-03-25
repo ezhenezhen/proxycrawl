@@ -8,6 +8,7 @@ class CrawlersController < ApplicationController
     crawler_files.each do |c|
       @crawlers << File.basename(c, '.*').camelize
     end
+    @crawlers.sort
   end
 
   def show
@@ -29,8 +30,8 @@ class CrawlersController < ApplicationController
     site = params[:id].constantize.to_s
 
     proxies.each do |proxy|
-      ip = proxy.split(':').first
-      port = proxy.split(':').last
+      ip = proxy.split(':').first.squish
+      port = proxy.split(':').last.squish
 
       if Proxy.where(ip: ip, port: port, site: site).blank? && IPAddress.valid?(ip)
         Proxy.create(

@@ -22,6 +22,7 @@ gem 'dotenv'
 gem 'whenever', require: false
 gem 'ipaddress'
 gem 'will_paginate'
+gem 'watir'
 
 # Frontend
 gem 'coffee-rails', require: false
