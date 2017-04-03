@@ -53,7 +53,7 @@ class CrawlersController < ApplicationController
       result << proxy.ip + ':' + proxy.port
     end
 
-    send_data result.join("\n"), filename: Crawler.find(params[:id]).name + '.txt'
+    send_data result.join("\n"), filename: Crawler.find(params[:id]).name + Time.now.strftime('%Y-%m-%d_%H-%M') + '.txt'
   end
 
   def crawl
