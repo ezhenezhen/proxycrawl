@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322112931) do
+ActiveRecord::Schema.define(version: 20170403112741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "crawlers", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "is_active",   default: true
+    t.string   "status"
+    t.string   "link"
+    t.datetime "last_ran_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "issues", force: :cascade do |t|
     t.integer  "user_id"
@@ -38,11 +48,11 @@ ActiveRecord::Schema.define(version: 20170322112931) do
   end
 
   create_table "proxies", force: :cascade do |t|
-    t.string   "site"
     t.string   "ip"
     t.string   "port"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "crawler_id"
   end
 
   create_table "users", force: :cascade do |t|

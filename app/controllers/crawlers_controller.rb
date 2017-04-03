@@ -1,48 +1,94 @@
 class CrawlersController < ApplicationController
   require 'csv'
+  before_action :set_crawler, only: [:show, :edit, :update, :destroy]
 
+  # GET /crawlers
   def index
-    crawler_files = Dir['app/crawlers/*.rb']
-    @crawlers = []
-
-    crawler_files.each do |c|
-      @crawlers << File.basename(c, '.*').camelize
-    end
-    @crawlers.sort
+    @crawlers = Crawler.all.sort
   end
 
+  # GET /crawlers/1
   def show
-    @proxies = Proxy.where(site: params[:id])
+  end
+
+  # GET /crawlers/new
+  def new
+    @crawler = Crawler.new
+  end
+
+  # GET /crawlers/1/edit
+  def edit
+  end
+
+  # POST /crawlers
+  def create
+    @crawler = Crawler.new(crawler_params)
+
+    if @crawler.save
+      redirect_to @crawler, notice: 'Crawler was successfully created.'
+    else
+      render :new
+    end
+  end
+
+  # PATCH/PUT /crawlers/1
+  def update
+    if @crawler.update(crawler_params)
+      redirect_to @crawler, notice: 'Crawler was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  # DELETE /crawlers/1
+  def destroy
+    @crawler.destroy
+    redirect_to crawlers_url, notice: 'Crawler was successfully destroyed.'
   end
 
   def file
-    proxies = Proxy.where(site: params[:id])
+    proxies = Proxy.where(crawler_id: params[:id])
     result = []
     proxies.each do |proxy|
       result << proxy.ip + ':' + proxy.port
     end
 
-    send_data result.to_csv, filename: params[:id].to_s + '.txt'
+    send_data result.join("\n"), filename: Crawler.find(params[:id]).name + '.txt'
   end
 
   def crawl
-    proxies = params[:id].constantize.new.parse
-    site = params[:id].constantize.to_s
+    crawler = Crawler.find(params[:id])
+    proxies = crawler.name.constantize.new.parse
+    proxies_created = 0
 
     proxies.each do |proxy|
       ip = proxy.split(':').first.squish
       port = proxy.split(':').last.squish
 
-      if Proxy.where(ip: ip, port: port, site: site).blank? && IPAddress.valid?(ip)
+      if Proxy.where(ip: ip, port: port, crawler_id: crawler.id).blank? && IPAddress.valid?(ip)
         Proxy.create(
           ip: ip,
           port: port, 
-          site: site
+          crawler_id: crawler.id
         )
+        proxies_created += 1
       end
     end
 
-    flash.now[:notice] = 'Successfully crawled a ' + site
-    @proxies = Proxy.where(site: site)
+    crawler.update_column(:last_ran_at, Time.now)
+    crawler.update_column(:status, proxies_created)
+    flash.now[:notice] = 'Successfully crawled a ' + crawler.name + '. ' + crawler.status + ' proxies added.'
+    @proxies = Proxy.where(crawler_id: crawler)
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_crawler
+      @crawler = Crawler.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def crawler_params
+      params.require(:crawler).permit(:name, :is_active, :status, :link, :last_ran_at)
+    end
 end

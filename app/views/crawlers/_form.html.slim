@@ -1,0 +1,12 @@
+= simple_form_for(@crawler) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :is_active
+    = f.input :status
+    = f.input :link
+    = f.input :last_ran_at
+
+  .form-actions
+    = f.button :submit

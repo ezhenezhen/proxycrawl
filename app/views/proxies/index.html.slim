@@ -7,14 +7,16 @@ table class='table'
       th Site
       th Ip
       th Port
+      th Created At
       th
 
   tbody
     - @proxies.each do |proxy|
       tr
-        td = proxy.site
+        td = proxy.crawler.name if proxy.crawler
         td = proxy.ip
         td = proxy.port
+        td = time_ago_in_words(proxy.created_at) + ' ago'
         td = link_to 'Show', proxy
 
 br

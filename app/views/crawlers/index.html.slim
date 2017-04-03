@@ -1,0 +1,27 @@
+h1 Listing crawlers
+
+table class='table'
+  thead class='thead-inverse'
+    tr
+      th Name
+      th Quantity of proxies
+      th Last crawl added proxies
+      th Link
+      th Last ran
+      th
+
+
+  tbody
+    - @crawlers.each do |crawler|
+      tr
+        td = link_to(crawler.name, crawler_path(crawler))
+        td = Proxy.where(crawler_id: crawler.id).count
+        td = crawler.status
+        td = crawler.link
+        td = time_ago_in_words(crawler.last_ran_at) + ' ago' unless crawler.last_ran_at.blank?
+        td = link_to('Crawl now', crawl_crawler_path(crawler))
+        td = link_to('Download file', file_crawler_path(crawler))
+        td = link_to 'Edit', edit_crawler_path(crawler)
+br
+
+= link_to 'New Crawler', new_crawler_path

@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @crawler.name
+p
+  strong Is active:
+  = @crawler.is_active
+p
+  strong Status:
+  = @crawler.status
+p
+  strong Link:
+  = @crawler.link
+p
+  strong Last ran at:
+  = @crawler.last_ran_at
+
+= link_to 'Edit', edit_crawler_path(@crawler)
+'  |
+= link_to 'Back', crawlers_path

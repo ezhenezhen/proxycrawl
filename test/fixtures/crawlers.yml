@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  is_active: false
+  status: MyString
+  link: MyString
+  last_ran_at: 2017-03-28 10:52:37
+
+two:
+  name: MyString
+  is_active: false
+  status: MyString
+  link: MyString
+  last_ran_at: 2017-03-28 10:52:37

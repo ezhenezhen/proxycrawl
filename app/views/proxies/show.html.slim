@@ -2,7 +2,7 @@ p#notice = notice
 
 p
   strong Site:
-  = @proxy.site
+  = @proxy.crawler.name if @proxy.crawler
 p
   strong Ip:
   = @proxy.ip
