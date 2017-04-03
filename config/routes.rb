@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :crawlers
   resources :proxies
   root to: "crawlers#index"
 
