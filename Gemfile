@@ -24,6 +24,9 @@ gem 'ipaddress'
 gem 'will_paginate'
 gem 'watir'
 
+
+
+
 # Frontend
 gem 'coffee-rails', require: false
 gem 'bootstrap-datepicker-rails'
@@ -48,6 +51,8 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-rspec'
   gem 'database_cleaner'
+  gem 'selenium-webdriver', '~> 2.53.4'
+  gem 'chromedriver-helper', '~> 1.1'
 end
 
 group :development do
