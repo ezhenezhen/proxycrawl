@@ -18,7 +18,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'cocoon'
 gem 'listen'
-gem 'dotenv'
+gem 'dotenv-rails'
 gem 'whenever', require: false
 gem 'ipaddress'
 gem 'will_paginate'
