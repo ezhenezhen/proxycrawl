@@ -8,6 +8,7 @@ table class='table'
       th Last crawl added proxies
       th Link
       th Last ran
+      th Comment
       th
 
 
@@ -19,6 +20,7 @@ table class='table'
         td = crawler.status
         td = crawler.link
         td = time_ago_in_words(crawler.last_ran_at) + ' ago' unless crawler.last_ran_at.blank?
+        td = crawler.comment
         td = link_to('Crawl now', crawl_crawler_path(crawler))
         td = link_to('Download file', file_crawler_path(crawler))
         td = link_to 'Edit', edit_crawler_path(crawler)
