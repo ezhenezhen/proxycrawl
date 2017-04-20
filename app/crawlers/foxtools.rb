@@ -14,5 +14,3 @@ class Foxtools
     result
   end
 end
-
- 
