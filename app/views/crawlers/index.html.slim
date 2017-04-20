@@ -1,15 +1,17 @@
 h1 Listing crawlers
+' Total quantity of proxies in the database:
+= @proxies_count
 
 table class='table'
   thead class='thead-inverse'
     tr
       th Name
-      th Quantity of proxies
-      th Last crawl added proxies
+      th # of proxies
+      th Last crawl # of proxies
       th Link
       th Last ran
+      th Comment
       th
-
 
   tbody
     - @crawlers.each do |crawler|
@@ -19,8 +21,13 @@ table class='table'
         td = crawler.status
         td = crawler.link
         td = time_ago_in_words(crawler.last_ran_at) + ' ago' unless crawler.last_ran_at.blank?
-        td = link_to('Crawl now', crawl_crawler_path(crawler))
-        td = link_to('Download file', file_crawler_path(crawler))
+        td = crawler.comment
+        td = link_to crawl_crawler_path(crawler), title: 'Run crawler now' do
+          i class='green play icon'
+        end
+        td = link_to file_crawler_path(crawler), title: 'Download file' do
+          i class='blue download icon'
+        end
         td = link_to 'Edit', edit_crawler_path(crawler)
 br
 

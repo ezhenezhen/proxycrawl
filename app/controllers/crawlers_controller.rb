@@ -4,7 +4,8 @@ class CrawlersController < ApplicationController
 
   # GET /crawlers
   def index
-    @crawlers = Crawler.all.sort
+    @crawlers = Crawler.where(is_active: true).order(:name)
+    @proxies_count = Proxy.count
   end
 
   # GET /crawlers/1

@@ -18,13 +18,11 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'cocoon'
 gem 'listen'
-gem 'dotenv'
+gem 'dotenv-rails'
 gem 'whenever', require: false
 gem 'ipaddress'
 gem 'will_paginate'
 gem 'watir'
-
-# Frontend
 gem 'coffee-rails', require: false
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-glyphicons'
@@ -42,6 +40,8 @@ gem 'sprockets-rails', '2.3.3'
 gem 'therubyracer', require: false
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', require: false
+gem 'less-rails-semantic_ui'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'byebug'
@@ -64,6 +64,6 @@ group :production do
   gem 'phantomjs'
   gem 'headless'
   gem 'unicorn'
-  gem 'airbrake', '<5.0' # some issues in new version. exceptions are not delivered
+  gem 'airbrake', '<5.0'
   gem 'foreman', require: false
 end

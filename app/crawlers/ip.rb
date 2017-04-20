@@ -5,8 +5,9 @@ class Ip
     result = []
 
     doc = Nokogiri::HTML(open(LINK))
-    doc.css('tbody tr').each do |node|
-      result << node.children.children[3].text[5..21]
+    doc.css('td').each do |node|
+      r = node.children.text.to_s.squish
+      result << r unless r.blank?
     end
 
     result

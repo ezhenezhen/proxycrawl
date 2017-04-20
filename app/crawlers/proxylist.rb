@@ -8,7 +8,7 @@ class Proxylist
     
     doc = Nokogiri::HTML(open(LINK))
     doc.css('tbody tr').each do |node|
-      puts node.children.children.first.text + ':' + node.children.children[1].text
+      result << node.children.children.first.text + ':' + node.children.children[1].text
     end
    
     result

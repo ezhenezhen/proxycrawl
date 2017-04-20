@@ -1,6 +1,4 @@
 class Socklist
-  
-
   def parse
     result = []
     browser = Watir::Browser.new :firefox

@@ -9,7 +9,7 @@ class ProxyList
       doc.css('table li.proxy').each do |node|
         nodeText = node.children.text
         if nodeText['Proxy']
-          puts Base64.decode64 nodeText.split("(")[1].split("'")[1]
+          result << Base64.decode64(nodeText.split("(")[1].split("'")[1])
         end
       end
     end
