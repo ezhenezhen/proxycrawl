@@ -13,6 +13,6 @@ test:
 
 development:
   <<: *default
-
+  
 production:
   <<: *default
