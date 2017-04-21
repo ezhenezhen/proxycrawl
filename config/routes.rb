@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       get :crawl
       get :file
+      get :send_file_to_admin
     end
   end
 end

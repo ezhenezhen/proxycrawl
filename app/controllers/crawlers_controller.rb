@@ -78,8 +78,35 @@ class CrawlersController < ApplicationController
 
     crawler.update_column(:last_ran_at, Time.now)
     crawler.update_column(:status, proxies_created)
-    flash.now[:notice] = 'Successfully crawled a ' + crawler.name + '. ' + crawler.status + ' proxies added.'
-    @proxies = Proxy.where(crawler_id: crawler)
+
+    proxies = Proxy.where(crawler_id: params[:id]).where('created_at >= ?', 1.week.ago)
+    file_name = Crawler.find(params[:id]).name + Time.now.strftime('%Y-%m-%d_%H-%M') + '.txt'
+    result = []
+
+    proxies.each do |proxy|
+      result << proxy.ip + ':' + proxy.port
+    end
+
+    file = Tempfile.new(file_name)
+
+    File.open(file, "w+") do |f|
+      result.each { |proxy| f.puts(proxy) }
+    end
+
+    RestClient.post(
+      ENV['PROXY_SITE'],
+      { file: File.open(file, 'r') },
+      {
+        'Authorization-Token' => ENV['PROXY_AUTH_TOKEN'],
+        'content_type' => 'multipart/form-data'
+      }
+    )
+
+    file.close
+    file.unlink
+    
+    redirect_to root_path
+    flash[:notice] = 'Successfully crawled a ' + crawler.name + '. ' + crawler.status + ' proxies added.'
   end
 
   private
