@@ -1,4 +1,4 @@
-class Workworkingproxies
+class Workingproxies
   # http://www.workingproxies.org/?page=39
   # http://www.workingproxies.org/?page=0
   LINK = 'http://workingproxies.org/?page='
