@@ -4,7 +4,7 @@ class Foxtools
   def parse
     result = []
 
-    (0..13).each do |n|
+    (1..13).each do |n|
       doc = Nokogiri::HTML(open("#{LINK}#{n}"))
       doc.css('tbody tr').each do |node|
         result << node.children[3].children.text + ':' + node.children[5].children.text

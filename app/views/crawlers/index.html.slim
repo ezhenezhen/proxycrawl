@@ -2,6 +2,12 @@ h1 Listing crawlers
 ' Total quantity of proxies in the database:
 = @proxies_count
 
+'   Total crawlers:
+= @crawlers.count
+
+'   Total active crawlers:
+= @crawlers.where(is_active: true).count
+
 table class='table'
   thead class='thead-inverse'
     tr
