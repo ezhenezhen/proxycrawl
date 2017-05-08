@@ -12,7 +12,8 @@ class Hidester
    doc = Nokogiri::HTML(html)
    doc.css('tr').each do |node|
      puts node.text
-    end
+   end
     
    result
  end
+end
