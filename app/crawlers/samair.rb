@@ -5,6 +5,7 @@ class Samair
 
   def parse
     result = []
+    
     (1..20).each do |n|
       doc = Nokogiri::HTML(open("#{LINK}#{n}.htm"))
       result += doc.css('#content').text.split("\n")

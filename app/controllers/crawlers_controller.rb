@@ -117,6 +117,6 @@ class CrawlersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def crawler_params
-      params.require(:crawler).permit(:name, :is_active, :status, :link, :last_ran_at, :comment)
+      params.require(:crawler).permit(:name, :is_active, :status, :link, :comment)
     end
 end
