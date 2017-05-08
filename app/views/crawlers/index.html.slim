@@ -1,16 +1,17 @@
 h1 Listing crawlers
 ' Total quantity of proxies in the database:
-= @proxies_count
+b = @proxies_count
 
 '   Total crawlers:
-= @crawlers.count
+b = @crawlers.count
 
 '   Total active crawlers:
-= @crawlers.where(is_active: true).count
+b = @crawlers.where(is_active: true).count
 
-table class='table'
+table class='table table-condensed table-striped'
   thead class='thead-inverse'
     tr
+      th Id
       th Name
       th # of proxies
       th Last crawl # of proxies
@@ -18,10 +19,13 @@ table class='table'
       th Last ran
       th Comment
       th
+      th
+      th
 
   tbody
     - @crawlers.each do |crawler|
       tr
+        td = crawler.id
         td = link_to(crawler.name, crawler_path(crawler))
         td = Proxy.where(crawler_id: crawler.id).count
         td = crawler.status
@@ -37,4 +41,4 @@ table class='table'
         td = link_to 'Edit', edit_crawler_path(crawler)
 br
 
-= link_to 'New Crawler', new_crawler_path
+= link_to 'New Crawler', new_crawler_path, class: "btn btn-default btn-sm"
