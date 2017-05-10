@@ -1,4 +1,4 @@
-class RunAllCrawlers < ApplicationJob 
+class RunAllCrawlers < ApplicationJob
   def perform
     ids = Crawler.where(is_active: true).pluck(:id)
 

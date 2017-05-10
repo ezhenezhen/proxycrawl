@@ -16,6 +16,7 @@ table class='table table-condensed table-striped'
       th # of proxies
       th Last crawl # of proxies
       th Link
+      th Adding proxies?
       th Last ran
       th Comment
       th
@@ -28,8 +29,13 @@ table class='table table-condensed table-striped'
         td = crawler.id
         td = link_to(crawler.name, crawler_path(crawler))
         td = Proxy.where(crawler_id: crawler.id).count
-        td = crawler.status
-        td = crawler.link
+        td = crawler.last_crawl_count
+        td = link_to(crawler.link, crawler.link)
+        td 
+          - if adding_proxies_icon(crawler)
+            i class='green checkmark icon'
+          - else
+            i class='red remove icon'
         td = time_ago_in_words(crawler.last_ran_at) + ' ago' unless crawler.last_ran_at.blank?
         td = crawler.comment
         td = link_to crawl_crawler_path(crawler), title: 'Run crawler now' do
@@ -39,6 +45,13 @@ table class='table table-condensed table-striped'
           i class='blue download icon'
         end
         td = link_to 'Edit', edit_crawler_path(crawler)
+    tr
+      td
+      td
+      td 
+        b Last crawl added
+      td 
+        b = @crawlers.sum(:last_crawl_count)
 br
 
 = link_to 'New Crawler', new_crawler_path, class: "btn btn-default btn-sm"

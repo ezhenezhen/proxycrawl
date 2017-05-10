@@ -43,6 +43,7 @@ gem 'uglifier', require: false
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
 gem 'rest-client'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug'
