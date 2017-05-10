@@ -1,11 +1,14 @@
 class Getproxy
-  LINK = 'https://www.getproxy.net/en/'
+  LINK = 'http://www.getproxy.jp/en/default/'
 
   def parse
     result = []
-    doc = Nokogiri::HTML(open(LINK))
-    doc.css('tbody tr').each do |node|
-      result << node.children.children.first.text + ':' + node.children.children[1].text
+    
+    (1..5).each do |n|
+      doc = Nokogiri::HTML(open(LINK + n.to_s))
+      doc.css('tr').each do |node|
+        result << node.children[1].text
+      end
     end
 
     result

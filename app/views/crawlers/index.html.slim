@@ -30,12 +30,9 @@ table class='table table-condensed table-striped'
         td = link_to(crawler.name, crawler_path(crawler))
         td = Proxy.where(crawler_id: crawler.id).count
         td = crawler.last_crawl_count
-        td = link_to(crawler.link, crawler.link)
+        td = link_to(crawler.link, crawler.link, target: :_blank)
         td 
-          - if adding_proxies_icon(crawler)
-            i class='green checkmark icon'
-          - else
-            i class='red remove icon'
+          = adding_proxies_icon(crawler)
         td = time_ago_in_words(crawler.last_ran_at) + ' ago' unless crawler.last_ran_at.blank?
         td = crawler.comment
         td = link_to crawl_crawler_path(crawler), title: 'Run crawler now' do

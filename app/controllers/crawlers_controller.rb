@@ -106,7 +106,7 @@ class CrawlersController < ApplicationController
     file.unlink
     
     redirect_to root_path
-    flash[:notice] = 'Successfully crawled a ' + crawler.name + '. ' + crawler.last_crawl_count + ' proxies added.'
+    flash[:notice] = 'Successfully crawled a ' + crawler.name + '. ' + crawler.last_crawl_count.to_s + ' proxies added.'
   end
 
   private

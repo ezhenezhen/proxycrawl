@@ -6,10 +6,17 @@ class Proxylist
   def parse
     result = []
     
-    doc = Nokogiri::HTML(open(LINK))
+    browser = Watir::Browser.new :chrome
+    browser.goto(LINK)
+    html = browser.html
+      
+    doc = Nokogiri::HTML(html)
+
     doc.css('tr').each do |node|
-      result << node.children.children.first.text + ':' + node.children.children[1].text
+      result << 
     end
+
+    browser.close
    
     result
   end
