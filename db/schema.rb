@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408121124) do
+ActiveRecord::Schema.define(version: 20170510134245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "crawlers", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "is_active",   default: true
+    t.boolean  "is_active",        default: true
     t.string   "status"
     t.string   "link"
     t.datetime "last_ran_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "comment"
+    t.integer  "last_crawl_count", default: 0
   end
 
   create_table "proxies", force: :cascade do |t|

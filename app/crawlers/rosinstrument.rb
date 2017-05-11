@@ -3,6 +3,7 @@ class Rosinstrument
 
   def parse
     result = []
+    
     browser = Watir::Browser.new :chrome
     
     (0..49).each do |n|

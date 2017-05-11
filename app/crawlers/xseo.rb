@@ -3,6 +3,7 @@ class Xseo
   
   def parse
     result = []
+    
     LINKS.each do |link|
       doc = Nokogiri::HTML(open(link))
       doc.css('td').each do |node|
