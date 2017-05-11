@@ -17,6 +17,7 @@ table class='table table-condensed table-striped'
       th Last crawl # of proxies
       th Link
       th Adding proxies?
+      th Active?
       th Last ran
       th Comment
       th
@@ -33,6 +34,8 @@ table class='table table-condensed table-striped'
         td = link_to(crawler.link, crawler.link, target: :_blank)
         td 
           = adding_proxies_icon(crawler)
+        td 
+          = true_false_icons(crawler.is_active)
         td = time_ago_in_words(crawler.last_ran_at) + ' ago' unless crawler.last_ran_at.blank?
         td = crawler.comment
         td = link_to crawl_crawler_path(crawler), title: 'Run crawler now' do

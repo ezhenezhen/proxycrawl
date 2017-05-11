@@ -6,9 +6,7 @@ class Awmproxy
     
     doc = Nokogiri::HTML(open(LINK))
 
-    browser = Watir::Browser.new :phantomjs
     browser = Watir::Browser.new :chrome
-    browser.driver.manage.timeouts.page_load = 3
     browser.goto LINK
     html = browser.html
     browser.close
@@ -16,7 +14,7 @@ class Awmproxy
     doc = Nokogiri::HTML(html)
 
     doc.css('tbody tr').each do |node|
-      result << node.text.split(' ').first
+      result << node.children.first.text
     end
 
     result

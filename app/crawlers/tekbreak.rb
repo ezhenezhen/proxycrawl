@@ -4,6 +4,7 @@ class Tekbreak
   
   def parse
     result = []
+    
     doc = Nokogiri::HTML(open(LINK))
     doc.css('body div').each do |node|
       result << node.children.first.text[9..23] + ':' + node.children[2].text[11..14]

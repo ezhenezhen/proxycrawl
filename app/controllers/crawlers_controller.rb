@@ -60,27 +60,28 @@ class CrawlersController < ApplicationController
   def crawl
     crawler = Crawler.find(params[:id])
     proxies = crawler.name.constantize.new.parse
-    proxies_created = 0
+    proxies_array = []
+    count_of_proxies = Proxy.where(crawler_id: crawler.id).count
 
     proxies.each do |proxy|
       ip = proxy.split(':').first.squish
       port = proxy.split(':').last.squish
-
-      if Proxy.where(ip: ip, port: port, crawler_id: crawler.id).blank? && IPAddress.valid?(ip)
-        Proxy.create(
-          ip: ip,
-          port: port, 
-          crawler_id: crawler.id
-        )
-        proxies_created += 1
-      end
+      proxies_array << { 
+        ip: ip,
+        port: port, 
+        crawler_id: crawler.id
+      }
     end
 
+    Proxy.create(proxies_array)
+
+    proxies_created = Proxy.where(crawler_id: crawler.id).count - count_of_proxies
     crawler.update_column(:last_ran_at, Time.now)
     crawler.update_column(:last_crawl_count, proxies_created)
 
-    proxies = Proxy.where(crawler_id: params[:id]).where('created_at >= ?', 1.week.ago)
+    proxies = Proxy.where(crawler_id: params[:id]).where('created_at >= ?', 2.days.ago)
     file_name = Crawler.find(params[:id]).name + Time.now.strftime('%Y-%m-%d_%H-%M') + '.txt'
+
     result = []
 
     proxies.each do |proxy|

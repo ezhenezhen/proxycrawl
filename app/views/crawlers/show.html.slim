@@ -3,7 +3,8 @@ p
   = @crawler.name
 p
   strong Is active:
-  = @crawler.is_active
+  i
+    = true_false_icons(@crawler.is_active)
 p
   strong Status:
   = @crawler.status
@@ -14,8 +15,8 @@ p
   strong Link:
   = @crawler.link
 p
-  strong Last ran at:
-  = @crawler.last_ran_at
+  strong Last ran:
+  = time_ago_in_words(@crawler.last_ran_at) + ' ago' unless @crawler.last_ran_at.blank?
 
 = link_to 'Edit', edit_crawler_path(@crawler)
 '  |

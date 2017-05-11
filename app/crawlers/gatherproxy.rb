@@ -4,6 +4,7 @@ class Gatherproxy
 
   def parse
     result = []
+    
     doc = Nokogiri::HTML(open(LINK))
 
     doc.css('script').each do |s|
