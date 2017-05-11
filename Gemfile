@@ -36,7 +36,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'select2-rails'
 gem 'simple_form'
 gem 'slim-rails'
-gem 'sprockets-rails', '2.3.3'
+gem 'sprockets', '3.6.3'
 gem 'therubyracer', require: false
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', require: false

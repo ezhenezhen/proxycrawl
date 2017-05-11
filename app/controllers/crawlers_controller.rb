@@ -80,7 +80,7 @@ class CrawlersController < ApplicationController
     crawler.update_column(:last_crawl_count, proxies_created)
 
     proxies = Proxy.where(crawler_id: params[:id]).where('created_at >= ?', 2.days.ago)
-    file_name = Crawler.find(params[:id]).name + Time.now.strftime('%Y-%m-%d_%H-%M') + '.txt'
+    file_name = crawler.name + Time.now.strftime('%Y-%m-%d_%H-%M') + '.txt'
 
     result = []
 
@@ -94,6 +94,7 @@ class CrawlersController < ApplicationController
       result.each { |proxy| f.puts(proxy) }
     end
 
+    #TODO: export this into module
     RestClient.post(
       ENV['PROXY_SITE'],
       { file: File.open(file, 'r') },
