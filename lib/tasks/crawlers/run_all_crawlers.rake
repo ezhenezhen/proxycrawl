@@ -16,7 +16,7 @@ namespace :crawlers do
 
       begin
         proxies = crawler.name.constantize.new.parse
-      rescue Net::OpenTimeout, Net::ReadTimeout, SocketError, OpenURI::HTTPError => e
+      rescue Net::OpenTimeout, Net::ReadTimeout, SocketError, OpenURI::HTTPError, Errno::ETIMEDOUT => e
         puts "Crawler #{crawler.name} failed to parse: #{e}".red
       end
 
@@ -85,11 +85,11 @@ namespace :crawlers do
       file.unlink
       finish = Time.now
 
-      added_proxies = Proxy.all.count - proxy_count_before_task
-
       puts "Took #{Time.at(finish - start).utc.strftime("%H:%M:%S")} to parse it".yellow
-      puts "Added #{added_proxies} proxies".yellow
     end
+
+    added_proxies = Proxy.all.count - proxy_count_before_task
+    puts "Added #{added_proxies} proxies".yellow
   end
 end
 
