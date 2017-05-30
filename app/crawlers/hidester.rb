@@ -11,13 +11,13 @@ class Hidester
 
     doc = Nokogiri::HTML(html)
     doc.css('tr').each do |node|
-     ip = node.children[3].text.squish
-     port = node.children[5].text.squish
+      ip = node.children[3].text.squish
+      port = node.children[5].text.squish
 
-     result << ip + ':' + port
+      result << ip + ':' + port
     end
 
     result.uniq!
     result
- end
+  end
 end
