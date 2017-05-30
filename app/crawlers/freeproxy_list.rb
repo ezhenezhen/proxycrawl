@@ -7,6 +7,7 @@ class FreeproxyList
     doc = Nokogiri::HTML(open(LINK))
     result = doc.children.last.text.squish.split(' ')
 
+    result.uniq!
     result
   end
 end

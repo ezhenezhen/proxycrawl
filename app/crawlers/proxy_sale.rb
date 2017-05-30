@@ -14,6 +14,7 @@ class ProxySale
       end
     end
 
+    result.uniq!
     result
   end
 end

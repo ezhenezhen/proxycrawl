@@ -17,6 +17,7 @@ class Newfreshproxies
     end
 
     result.flatten!
+    result.uniq!
     result
   end
 end

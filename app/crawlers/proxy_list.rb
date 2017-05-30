@@ -14,6 +14,7 @@ class ProxyList
       end
     end
  
+    result.uniq!
     result
   end
 end

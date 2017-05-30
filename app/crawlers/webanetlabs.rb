@@ -19,6 +19,7 @@ class Webanetlabs
     end
 
     result.flatten!.delete_if { |x| !x.include?(':') }
+    result.uniq!
     result
   end
 end

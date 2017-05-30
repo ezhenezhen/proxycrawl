@@ -9,6 +9,7 @@ class Torvpn
       result << node.children.children.first.text + ':' + node.children.children[1].text
     end
 
+    result.uniq!
     result
   end
 end

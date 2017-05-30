@@ -25,6 +25,7 @@ class Freeproxylists
 
     browser.close
 
+    result.uniq!
     result
   end
 end

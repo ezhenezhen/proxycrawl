@@ -10,6 +10,7 @@ class Tekbreak
       result << node.children.first.text[9..23] + ':' + node.children[2].text[11..14]
     end
 
+    result.uniq!
     result
   end
 end

@@ -17,6 +17,7 @@ class CoolProxy
       end
     end
 
+    result.uniq!
     result
   end
 end

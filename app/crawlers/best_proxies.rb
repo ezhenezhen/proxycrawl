@@ -19,6 +19,7 @@ class BestProxies
 
     browser.close
 
+    result.uniq!
     result
   end
 end

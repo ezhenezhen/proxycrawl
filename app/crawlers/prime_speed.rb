@@ -8,6 +8,7 @@ class PrimeSpeed
     result = doc.css('pre').text.squish.split(' ')
     result.shift(4)
 
+    result.uniq!
     result
   end
 end

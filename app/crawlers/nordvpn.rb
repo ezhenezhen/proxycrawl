@@ -9,7 +9,7 @@ class Nordvpn
     browser.button(class: "close").click
     sleep(1)
 
-    1000.times do
+    1.times do |count|
       browser.link(text: "Load more").click
       sleep(1)
     end
@@ -22,6 +22,7 @@ class Nordvpn
     end
 
     browser.close
+    result.uniq!
     result
   end
 end

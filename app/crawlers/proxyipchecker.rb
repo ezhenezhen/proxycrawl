@@ -11,6 +11,7 @@ class Proxyipchecker
       result << array[0] + ':' + array[2]
     end
 
+    result.uniq!
     result
   end
 end

@@ -17,6 +17,7 @@ class Sslproxies
     end
 
     result.flatten!
+    result.uniq!
     result
   end
 end

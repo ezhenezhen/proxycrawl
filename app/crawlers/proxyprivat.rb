@@ -9,6 +9,7 @@ class Proxyprivat
       result << node.children[1].text if node.children[1]
     end
 
+    result.uniq!
     result
   end
 end

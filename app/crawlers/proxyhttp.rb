@@ -21,7 +21,7 @@ class Proxyhttp
     end
 
     browser.close
-    
+    result.uniq!
     result
   end
 end

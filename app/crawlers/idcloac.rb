@@ -12,7 +12,8 @@ class Idcloac
         end
       end
     end
- 
+    
+    result.uniq!
     result
   end
 end

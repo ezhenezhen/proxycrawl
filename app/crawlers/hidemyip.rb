@@ -15,6 +15,7 @@ class Hidemyip
       result << p['i'] + ':' + p['p']
     end
 
+    result.uniq!
     result
   end
 end

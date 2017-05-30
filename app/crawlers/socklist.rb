@@ -21,7 +21,7 @@ class Socklist
     end
 
     browser.close
-    
+    result.uniq!
     result
   end
 end

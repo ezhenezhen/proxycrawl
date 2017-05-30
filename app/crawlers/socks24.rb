@@ -17,6 +17,7 @@ class Socks24
     end
 
     result.flatten!
+    result.uniq!
     result
   end
 end

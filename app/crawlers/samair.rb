@@ -12,6 +12,7 @@ class Samair
       result.delete(" ")
     end
 
+    result.uniq!
     result
   end
 end

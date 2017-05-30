@@ -17,6 +17,7 @@ class Livesocks
     end
 
     result.flatten!
+    result.uniq!
     result
   end
 end
