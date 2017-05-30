@@ -10,6 +10,7 @@ class Ip
       result << r unless r.blank?
     end
 
+    result.uniq!
     result
   end
 end

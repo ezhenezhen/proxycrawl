@@ -14,6 +14,7 @@ class Gatherproxy
       end
     end
 
+    result.uniq!
     result
   end
 end

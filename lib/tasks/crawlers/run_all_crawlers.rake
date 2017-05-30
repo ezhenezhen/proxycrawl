@@ -1,18 +1,23 @@
 namespace :crawlers do
   desc "Run all active crawlers"
   task run_all: :environment do
-    ids = Crawler.where(is_active: true)
+    proxy_count_before_task = Proxy.all.count
+    crawlers = Crawler.where(is_active: true).order(:name)
+    names = crawlers.pluck(:name)
+    ids = crawlers.pluck(:id)
+
+    puts "Crawlers to parse: #{names}".magenta
 
     ids.each do |id|
       start = Time.now
       crawler = Crawler.find(id)
 
-      puts "Parsing a crawler #{crawler.name}"
+      puts "Parsing a crawler #{crawler.name}".green
 
       begin
         proxies = crawler.name.constantize.new.parse
-      rescue Net::OpenTimeout, Net::ReadTimeout => e
-        puts "Crawler #{crawler.name} failed to parse: " + e.to_s
+      rescue Net::OpenTimeout, Net::ReadTimeout, SocketError, OpenURI::HTTPError, Errno::ETIMEDOUT => e
+        puts "Crawler #{crawler.name} failed to parse: #{e}".red
       end
 
       proxies = [] if proxies.nil?
@@ -23,7 +28,7 @@ namespace :crawlers do
       proxies.each do |proxy|
         ip = proxy.split(':').first.squish
         port = proxy.split(':').last.squish
-        proxies_array << { 
+        proxies_array << {
           ip: ip,
           port: port, 
           crawler_id: crawler.id
@@ -34,7 +39,7 @@ namespace :crawlers do
 
       proxies_created = Proxy.where(crawler_id: crawler.id).count - count_of_proxies
 
-      puts "#{proxies_created} proxies added"
+      puts "#{proxies_created} proxies added".blue
 
       crawler.update_column(:last_ran_at, Time.now)
       crawler.update_column(:last_crawl_count, proxies_created)
@@ -80,8 +85,11 @@ namespace :crawlers do
       file.unlink
       finish = Time.now
 
-      puts "Took #{finish - start} seconds to parse it (#{(finish - start)/60} minutes)"
+      puts "Took #{Time.at(finish - start).utc.strftime("%H:%M:%S")} to parse it".yellow
     end
+
+    added_proxies = Proxy.all.count - proxy_count_before_task
+    puts "Added #{added_proxies} proxies".yellow
   end
 end
 

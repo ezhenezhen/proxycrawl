@@ -23,6 +23,7 @@ class FreeProxy
       end
     end
 
+    result.uniq!
     result
   end
 end

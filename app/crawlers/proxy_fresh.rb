@@ -11,6 +11,7 @@ class ProxyFresh
       end
     end
 
+    result.uniq!
     result
   end
 end

@@ -13,6 +13,7 @@ class Workingproxies
       end
     end
 
+    result.uniq!
     result
   end
 end
