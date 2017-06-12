@@ -1,15 +1,20 @@
 class ListProxylistplus
-  LINK = 'http://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1'
-
+  LINK = 'http://list.proxylistplus.com/Fresh-HTTP-Proxy-List-'
+ 
   def parse
     result = []
     
-    doc = Nokogiri::HTML(open(LINK))
-      doc.css('table.bg td').each do |node|
-        result << node.children[1].text + ':' + node.children[2].text
+    (1..6).each do |page|
+      doc = Nokogiri::HTML(open(LINK + page.to_s))
+
+      doc.css('table.bg tr').each do |node|
+        if node.children[3] && node.children[5]
+          result << node.children[3].text + ':' + node.children[5].text
+        end
       end
     end
-  
+ 
+    result.uniq!
     result
   end
 end

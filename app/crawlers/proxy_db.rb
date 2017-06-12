@@ -13,6 +13,7 @@ class ProxyDb
       end
     end
 
+    result.uniq!
     result
   end
 end

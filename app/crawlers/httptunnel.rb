@@ -9,6 +9,7 @@ class Httptunnel
       result << node.text
     end
 
+    result.uniq!
     result
   end
 end

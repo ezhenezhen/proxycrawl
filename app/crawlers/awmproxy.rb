@@ -17,6 +17,7 @@ class Awmproxy
       result << node.children.first.text
     end
 
+    result.uniq!
     result
   end
 end

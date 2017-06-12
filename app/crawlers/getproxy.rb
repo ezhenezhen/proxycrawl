@@ -11,6 +11,7 @@ class Getproxy
       end
     end
 
+    result.uniq!
     result
   end
 end

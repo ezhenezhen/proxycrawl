@@ -11,6 +11,7 @@ class OnlineProxy
       end
     end
 
+    result.uniq!
     result.delete(':')
     result
   end
