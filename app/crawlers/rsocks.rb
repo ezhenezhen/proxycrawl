@@ -1,6 +1,6 @@
 class Rsocks
   #https://rsocks.net/freeproxy
-  #На сайте требуеться регестрация что бы получить больше прокси. 
+  #На сайте требуеться регестрация что бы получить больше прокси 
   #Login adacer2012
   #Password adacer2012
   LINK = 'https://rsocks.net/freeproxy?page='
