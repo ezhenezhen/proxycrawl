@@ -1,9 +1,7 @@
 class Freeproxy
 
-  LINKS = [  
-    #'https://2freeproxy.com/elite-proxy.html' [4].text.squish.split(' ') 
+  LINKS = [
     'https://2freeproxy.com/anonymous-proxy.html',
-    #'https://2freeproxy.com/socks-proxy.html', [4].text.squish.split(' ')
     'https://2freeproxy.com/socks4.html',
     'https://2freeproxy.com/socks5.html',
     'https://2freeproxy.com/https-proxy.html',
@@ -19,10 +17,11 @@ class Freeproxy
     result = []
 
     LINKS.each do |link|
-      doc = Nokogiri::HTML(open("#{link}"))
-      result = doc.css('p')[3].text.squish.split(' ')
+      doc = Nokogiri::HTML(open(link))
+      result << doc.css('p')[3].text.squish.split(' ')
     end
 
+    result.flatten!
     result.uniq!
     result
   end
