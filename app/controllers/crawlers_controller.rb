@@ -82,7 +82,7 @@ class CrawlersController < ApplicationController
       format.html
       format.csv {
         File.open("a.csv", "w") do |f|
-          f.write(@result.join("\n"))
+          f.write(@result.sample(1000).join("\n"))
         end
         send_file "a.csv", filename: 'socks.csv'
       }
