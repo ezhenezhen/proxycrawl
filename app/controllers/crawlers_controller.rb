@@ -73,7 +73,9 @@ class CrawlersController < ApplicationController
     socks.each_with_index do |s, index|
       ip = s.split(':').first
       port = s.split(':').last
-      @result << (start_port + index).to_s + ';' + ip + ';' + port + ';' + 'socks5'
+      if IPAddress.valid?(ip)
+        @result << (start_port + index).to_s + ';' + ip + ';' + port + ';' + 'socks5'
+      end
     end
 
     respond_to do |format|
