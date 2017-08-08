@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :proxies
   root to: "crawlers#index"
 
+  get :socks, to: :socks, controller: 'crawlers'
+
   resources :crawlers do
     member do
       get :crawl

@@ -57,6 +57,31 @@ class CrawlersController < ApplicationController
     send_data result.join("\n"), filename: Crawler.find(params[:id]).name + Time.now.strftime('%Y-%m-%d_%H-%M') + '.txt'
   end
 
+  def socks
+    crawlers = ['Vipsocks', 'SocksProxy', 'Socks24', 'Livesocks']
+    socks = []
+
+    crawlers.each do |crawler|
+      socks << crawler.constantize.new.parse
+    end
+
+    socks.flatten!
+    socks.uniq!
+    start_port = 3333
+    @result = []
+
+    socks.each_with_index do |s, index|
+      ip = s.split(':').first
+      port = s.split(':').last
+      @result << (start_port + index).to_s + ';' + ip + ';' + port + ';' + 'socks5'
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @result.to_csv, filename: 'socks.csv' }
+    end
+  end
+
   def crawl
     crawler = Crawler.find(params[:id])
     proxies = crawler.name.constantize.new.parse
