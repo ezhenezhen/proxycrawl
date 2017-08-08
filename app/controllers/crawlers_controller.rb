@@ -80,7 +80,12 @@ class CrawlersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @result.to_csv, filename: 'socks.csv' }
+      format.csv {
+        File.open("a.csv", "w") do |f|
+          f.write(@result.join("\n"))
+        end
+        send_file "a.csv", filename: 'socks.csv'
+      }
     end
   end
 
