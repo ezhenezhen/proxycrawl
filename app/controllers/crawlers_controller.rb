@@ -70,7 +70,7 @@ class CrawlersController < ApplicationController
     start_port = 3333
     @result = []
 
-    socks.each_with_index do |s, index|
+    socks.sample(1000).each_with_index do |s, index|
       ip = s.split(':').first
       port = s.split(':').last
       if IPAddress.valid?(ip)
@@ -82,7 +82,7 @@ class CrawlersController < ApplicationController
       format.html
       format.csv {
         File.open("a.csv", "w") do |f|
-          f.write(@result.sample(1000).join("\n"))
+          f.write(@result.join("\n"))
         end
         send_file "a.csv", filename: 'socks.csv'
       }
