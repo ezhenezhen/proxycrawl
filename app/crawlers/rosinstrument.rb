@@ -21,4 +21,7 @@ class Rosinstrument
     result.uniq!
     result
   end
+
+  def socks
+  end
 end

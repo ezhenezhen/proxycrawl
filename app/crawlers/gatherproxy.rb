@@ -17,4 +17,8 @@ class Gatherproxy
     result.uniq!
     result
   end
+
+  def socks5
+    link = 'http://www.gatherproxy.com/ru/sockslist'
+  end
 end

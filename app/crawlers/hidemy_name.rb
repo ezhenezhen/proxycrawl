@@ -16,4 +16,12 @@ class HidemyName
     result.uniq!
     result
   end
+
+  def socks4
+    link = 'https://hidemy.name/en/proxy-list/?type=4#list'
+  end
+
+  def socks5
+    link = 'https://hidemy.name/en/proxy-list/?type=5#list'
+  end
 end

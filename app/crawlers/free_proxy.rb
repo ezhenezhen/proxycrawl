@@ -26,4 +26,12 @@ class FreeProxy
     result.uniq!
     result
   end
+
+  def socks4
+    link = 'http://free-proxy.cz/en/proxylist/country/all/socks4/speed/all'
+  end
+
+  def socks5
+    link = 'http://free-proxy.cz/en/proxylist/country/all/socks5/speed/all'
+  end
 end

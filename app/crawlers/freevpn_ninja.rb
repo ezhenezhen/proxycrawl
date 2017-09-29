@@ -14,4 +14,10 @@ class FreevpnNinja
     result.uniq!
     result
   end
+
+  def socks4
+  end
+
+  def socks5
+  end
 end

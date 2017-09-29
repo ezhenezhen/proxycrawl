@@ -70,7 +70,7 @@ class CrawlersController < ApplicationController
     start_port = 3333
     @result = []
 
-    socks.sample(1000).each_with_index do |s, index|
+    socks.sample(500).each_with_index do |s, index|
       ip = s.split(':').first
       port = s.split(':').last
       if IPAddress.valid?(ip)
