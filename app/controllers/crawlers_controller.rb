@@ -69,22 +69,22 @@ class CrawlersController < ApplicationController
     socks.uniq!
     start_port = 3333
     @result = []
-    @full_socks = []
+    @all_socks = []
     
     socks.each_with_index do |s, index|
       ip = s.split(':').first
       port = s.split(':').last
       if IPAddress.valid?(ip)
-        @full_socks << (start_port + index).to_s + ';' + ip + ';' + port + ';' + 'socks5'
+        @all_socks << (start_port + index).to_s + ';' + ip + ';' + port + ';' + 'socks5'
       end
     end
 
     id = params[:id].to_i
     @view_socks = []
-    @view_socks << @full_socks[(id-1)*500, 500]
+    @view_socks << @all_socks[(id-1)*500, 500]
     @view_socks.flatten!
         
-    @result << @full_socks.sample(500)
+    @result << @all_socks.sample(500)
     @result.flatten!
 
     respond_to do |format|
