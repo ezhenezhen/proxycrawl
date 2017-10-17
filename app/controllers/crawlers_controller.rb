@@ -70,7 +70,7 @@ class CrawlersController < ApplicationController
     start_port = 3333
     @result = []
     @full_socks = []
-
+    
     socks.each_with_index do |s, index|
       ip = s.split(':').first
       port = s.split(':').last
@@ -79,20 +79,11 @@ class CrawlersController < ApplicationController
       end
     end
 
-    id = params[:id]
-    case id
-    when 1
-      @full_socks[(id-1)*500, 500]
-    when 2
-      @full_socks[(id-1)*500, 500]
-    when 3
-      @full_socks[(id-1)*500, 500]
-    when 4
-      @full_socks[(id-1)*500, 500]
-    else
-      @result
-    end        
-
+    id = params[:id].to_i
+    @view_socks = []
+    @view_socks << @full_socks[(id-1)*500, 500]
+    @view_socks.flatten!
+        
     @result << @full_socks.sample(500)
     @result.flatten!
 
