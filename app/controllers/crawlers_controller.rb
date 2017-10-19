@@ -57,6 +57,7 @@ class CrawlersController < ApplicationController
     send_data result.join("\n"), filename: Crawler.find(params[:id]).name + Time.now.strftime('%Y-%m-%d_%H-%M') + '.txt'
   end
 
+  #TODO: run based on all socks crawlers in the folder
   def socks
     crawlers = ['Vipsocks', 'SocksProxy', 'Socks24', 'Livesocks']
     socks = []
@@ -90,6 +91,7 @@ class CrawlersController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {
+        # TODO: tempfile instead of this one
         File.open("a.csv", "w") do |f|
           f.write(@result.join("\n"))
         end
@@ -135,7 +137,7 @@ class CrawlersController < ApplicationController
       result.each { |proxy| f.puts(proxy) }
     end
 
-    #TODO: export this into module
+    #TODO: export this into module, use same with rake task
     RestClient.post(
       ENV['PROXY_SITE'],
       { file: File.open(file, 'r') },

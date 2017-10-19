@@ -1,3 +1,4 @@
+# TODO: crawl http and socks proxies, send http to admin
 namespace :crawlers do
   desc "Run all active crawlers"
   task run_all: :environment do
@@ -90,6 +91,15 @@ namespace :crawlers do
 
     added_proxies = Proxy.all.count - proxy_count_before_task
     puts "Added #{added_proxies} proxies".yellow
+  end
+
+  def save_to_db(ips)
+  end
+
+  def send_to_admin(ips)
+  end
+
+  def get_crawlers_list(type)
   end
 end
 
