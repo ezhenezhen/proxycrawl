@@ -1,24 +1,37 @@
-class Html::Gatherproxy
+class Socks::Gatherproxy
   # ports are stored as hex 16
-  LINK = 'http://www.gatherproxy.com/'
+  LINK = 'http://www.gatherproxy.com/ru/sockslist'
 
   def parse
-    # result = []
+    result = []
+    result << socks5
+    result.flatten!
     
-    # doc = Nokogiri::HTML(open(LINK))
-
-    # doc.css('script').each do |s|
-    #   if s.text.include?('PROXY_IP')
-    #     json = JSON.parse(s.text.split('(').second.split(')').first)
-    #     result << json['PROXY_IP'] + ':' + json['PROXY_PORT'].hex.to_s
-    #   end
-    # end
-
-    # result.uniq!
-    # result
+    result
   end
 
   def socks5
-    link = 'http://www.gatherproxy.com/ru/sockslist'
+    get_ips
+  end
+
+  def get_ips
+    result = []
+    
+    doc = Nokogiri::HTML(open(LINK))
+
+    doc.css('script').each_with_index do |s, index|
+      if s.text.include?('document.write')
+        if s.text.split('(').second.include?('.')
+          proxy = s.text.to_s.squish.split('(').second + doc.css('script')[index + 1].text.split('(').second
+          proxy.gsub!("')'", ':')
+          proxy.gsub!("')", '')
+          proxy.gsub!("'", '')
+          result << proxy
+        end
+      end
+    end
+
+    result.uniq!
+    result
   end
 end
