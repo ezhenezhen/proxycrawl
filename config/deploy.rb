@@ -1,7 +1,6 @@
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
-require 'mina/whenever'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -76,7 +75,6 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      invoke :'whenever:update'
       # command "sudo service #{fetch(:user)} restart"
     end
   end
