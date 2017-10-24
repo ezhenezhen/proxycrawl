@@ -57,24 +57,18 @@ class CrawlersController < ApplicationController
     send_data result.join("\n"), filename: Crawler.find(params[:id]).name + Time.now.strftime('%Y-%m-%d_%H-%M') + '.txt'
   end
 
+  #TODO: run based on all socks crawlers in the folder
   def socks
-    crawlers = ['Vipsocks', 'SocksProxy', 'Socks24', 'Livesocks']
-    socks = []
+    socks = Sock.order("RANDOM()").limit(500)
 
-    crawlers.each do |crawler|
-      socks << crawler.constantize.new.parse
-    end
-
-    socks.flatten!
-    socks.uniq!
     start_port = 3333
     @result = []
 
-    socks.sample(500).each_with_index do |s, index|
-      ip = s.split(':').first
-      port = s.split(':').last
+    socks.each_with_index do |s, index|
+      ip = s.ip
+      port = s.port
       if IPAddress.valid?(ip)
-        @result << (start_port + index).to_s + ';' + ip + ';' + port + ';' + 'socks5'
+        @result << (start_port + index).to_s + ';' + ip + ';' + port + ';' + s.socks_type
       end
     end
 
@@ -126,7 +120,7 @@ class CrawlersController < ApplicationController
       result.each { |proxy| f.puts(proxy) }
     end
 
-    #TODO: export this into module
+    #TODO: export this into module, use same with rake task
     RestClient.post(
       ENV['PROXY_SITE'],
       { file: File.open(file, 'r') },
