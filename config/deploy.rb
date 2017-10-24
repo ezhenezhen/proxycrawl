@@ -1,3 +1,4 @@
+require 'mina/whenever'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'

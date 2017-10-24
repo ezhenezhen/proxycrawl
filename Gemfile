@@ -45,7 +45,7 @@ gem 'autoprefixer-rails'
 gem 'rest-client'
 gem 'sidekiq'
 gem 'colorize'
-gem 'mina'
+gem 'mina-whenever'
 
 group :development, :test do
   gem 'byebug'
