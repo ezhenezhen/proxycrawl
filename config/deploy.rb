@@ -2,7 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
-require 'mina/whenever'
+require 'mina/whenever/tasks'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
