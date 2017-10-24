@@ -191,7 +191,7 @@ namespace :crawlers do
     case type
     when :socks
       result = []
-      files = Dir.entries('app/crawlers/socks/').drop(2)
+      files = Dir.entries('app/crawlers/socks/').sort.drop(2)
       files.each do |f|
         result << ("Socks::" + f.split('.').first.camelize).constantize
       end
@@ -199,7 +199,7 @@ namespace :crawlers do
       result
     when :dynamic
       result = []
-      files = Dir.entries('app/crawlers/html/dynamic/').drop(2)
+      files = Dir.entries('app/crawlers/html/dynamic/').sort.drop(2)
       files.each do |f|
         result << ("Html::Dynamic::" + f.split('.').first.camelize).constantize
       end
@@ -207,7 +207,7 @@ namespace :crawlers do
       result
     when :static
       result = []
-      files = Dir.entries('app/crawlers/html/static/').drop(2)
+      files = Dir.entries('app/crawlers/html/static/').sort.drop(2)
       files.each do |f|
         result << ("Html::Static::" + f.split('.').first.camelize).constantize
       end
