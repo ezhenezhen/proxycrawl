@@ -33,7 +33,14 @@ ActiveRecord::Schema.define(version: 20171020070620) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "crawler_id"
-    t.string   "type"
+  end
+
+  create_table "socks", force: :cascade do |t|
+    t.string   "ip"
+    t.string   "port"
+    t.string   "socks_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -3,25 +3,23 @@ class Socks::Socklist
 
   def parse
     result = []
+    10.times do
+      (1..4).each do |n|
+        doc = Nokogiri::HTML(open(LINK + n.to_s))
 
-    browser = Watir::Browser.new :chrome
-    
-    (1..4).each do |n|
-      browser.goto(LINK + n.to_s)
-     
-      html = browser.html
-      doc = Nokogiri::HTML(html)
+        doc.css('tr').each do |node|
+          if node.children[1].text && node.children[3].text
+            ip = node.children[1].text
+            port = node.children[3].text[/\d+/]
 
-      doc.css('tr').each do |node|
-        ip = node.children[1].text
-        port = node.children[3].children.last.text.squish
-
-        result << ip + ':' + port
+            result << ip + ':' + port.to_s
+          end
+        end
       end
     end
 
-    browser.close
     result.uniq!
+    result.shift(2)
     result
   end
 end

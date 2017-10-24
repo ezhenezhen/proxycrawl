@@ -59,39 +59,22 @@ class CrawlersController < ApplicationController
 
   #TODO: run based on all socks crawlers in the folder
   def socks
-    crawlers = ['Vipsocks', 'SocksProxy', 'Socks24', 'Livesocks']
-    socks = []
+    socks = Sock.order("RANDOM()").limit(500)
 
-    crawlers.each do |crawler|
-      socks << crawler.constantize.new.parse
-    end
-
-    socks.flatten!
-    socks.uniq!
     start_port = 3333
     @result = []
-    @all_socks = []
-    
+
     socks.each_with_index do |s, index|
-      ip = s.split(':').first
-      port = s.split(':').last
+      ip = s.ip
+      port = s.port
       if IPAddress.valid?(ip)
-        @all_socks << (start_port + index).to_s + ';' + ip + ';' + port + ';' + 'socks5'
+        @result << (start_port + index).to_s + ';' + ip + ';' + port + ';' + s.socks_type
       end
     end
-
-    id = params[:id].to_i
-    @view_socks = []
-    @view_socks << @all_socks[(id-1)*500, 500]
-    @view_socks.flatten!
-        
-    @result << @all_socks.sample(500)
-    @result.flatten!
 
     respond_to do |format|
       format.html
       format.csv {
-        # TODO: tempfile instead of this one
         File.open("a.csv", "w") do |f|
           f.write(@result.join("\n"))
         end

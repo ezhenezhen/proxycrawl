@@ -1,9 +1,9 @@
 class Socks::FreeProxy
   def parse
-    result = []
-    result << socks4
-    result << socks5
-    result
+    # result = []
+    # result << socks4
+    # result << socks5
+    # result
   end
 
   def socks4

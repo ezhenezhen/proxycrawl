@@ -6,6 +6,8 @@ class Socks::FreevpnNinja
     result << socks4
     result << socks5
 
+    result.flatten!
+
     result
   end
 

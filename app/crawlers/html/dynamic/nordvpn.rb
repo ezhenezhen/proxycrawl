@@ -6,13 +6,13 @@ class Html::Dynamic::Nordvpn
     browser = Watir::Browser.new :chrome
     
     browser.goto(LINK)
-    browser.button(class: "close").click
+    browser.link(class: 'popup-close c-bw-d9 pull-right').wait_until_present.click
     sleep(1)
 
-    1.times do |count|
-      browser.link(text: "Load more").click
-      sleep(1)
-    end
+    # 1.times do |count|
+    #   browser.link(class: "btn-brand btn-brand-yellow").click
+    #   sleep(1)
+    # end
 
     html = browser.html
     doc = Nokogiri::HTML(html)
